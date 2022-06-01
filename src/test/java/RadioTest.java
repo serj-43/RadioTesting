@@ -6,15 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RadioTest {
 
     @Test
-    void VolumeUp() {
-        Radio radioObject = new Radio();
-        int expected = 1;
-        radioObject.increaseVolume();
-        int actual = radioObject.getVolume();
-        assertEquals(expected, actual);
-    }
-
-    @Test
     void VolumeDown() {
         Radio radioObject = new Radio();
         int expected = 4;
@@ -22,6 +13,15 @@ public class RadioTest {
             radioObject.increaseVolume();
         }
         radioObject.decreaseVolume();
+        int actual = radioObject.getVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void VolumeUp() {
+        Radio radioObject = new Radio();
+        int expected = 1;
+        radioObject.increaseVolume();
         int actual = radioObject.getVolume();
         assertEquals(expected, actual);
     }
