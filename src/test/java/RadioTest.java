@@ -9,11 +9,9 @@ public class RadioTest {
     void VolumeDown() {
         Radio radioObject = new Radio();
         int expected = 4;
-        for (int i = 0; i < 5; i++) {
-            radioObject.increaseVolume();
-        }
+        radioObject.setCurrentVolume(5);
         radioObject.decreaseVolume();
-        int actual = radioObject.getVolume();
+        int actual = radioObject.getCurrentVolume();
         assertEquals(expected, actual);
     }
 
@@ -22,7 +20,7 @@ public class RadioTest {
         Radio radioObject = new Radio();
         int expected = 1;
         radioObject.increaseVolume();
-        int actual = radioObject.getVolume();
+        int actual = radioObject.getCurrentVolume();
         assertEquals(expected, actual);
     }
 
@@ -31,7 +29,7 @@ public class RadioTest {
         Radio radioObject = new Radio();
         int expected = 0;
         radioObject.decreaseVolume();
-        int actual = radioObject.getVolume();
+        int actual = radioObject.getCurrentVolume();
         assertEquals(expected, actual);
     }
 
@@ -39,18 +37,18 @@ public class RadioTest {
     void VolumeTop() {
         Radio radioObject = new Radio();
         int expected = 100;
-        for (int i = 0; i < 101; i++) {
-            radioObject.increaseVolume();
-        }
-        int actual = radioObject.getVolume();
+        radioObject.setCurrentVolume(100);
+        radioObject.increaseVolume();
+        int actual = radioObject.getCurrentVolume();
         assertEquals(expected, actual);
     }
 
     @Test
     void ChannelAvailSet() {
         Radio radioObject = new Radio(30);
-        int expected = 1;
-        int actual = radioObject.setChannel(25);
+        int expected = 25;
+        radioObject.setCurrentChannel(25);
+        int actual = radioObject.getCurrentChannel();
         assertEquals(expected, actual);
     }
 
@@ -58,7 +56,8 @@ public class RadioTest {
     void ChannelNotAvailPosSet() {
         Radio radioObject = new Radio(50);
         int expected = 0;
-        int actual = radioObject.setChannel(100);
+        radioObject.setCurrentChannel(100);
+        int actual = radioObject.getCurrentChannel();
         assertEquals(expected, actual);
     }
 
@@ -66,7 +65,8 @@ public class RadioTest {
     void ChannelNotAvailNegSet() {
         Radio radioObject = new Radio(10);
         int expected = 0;
-        int actual = radioObject.setChannel(-1);
+        radioObject.setCurrentChannel(-1);
+        int actual = radioObject.getCurrentChannel();
         assertEquals(expected, actual);
     }
 
@@ -74,9 +74,9 @@ public class RadioTest {
     void ChannelForwardRoll() {
         Radio radioObject = new Radio(20);
         int expected = 0;
-        radioObject.setChannel(19);
+        radioObject.setCurrentChannel(19);
         radioObject.nextChannel();
-        int actual = radioObject.getChannel();
+        int actual = radioObject.getCurrentChannel();
         assertEquals(expected, actual);
     }
 
@@ -84,9 +84,9 @@ public class RadioTest {
     void ChannelBackwardRoll() {
         Radio radioObject = new Radio();
         int expected = 9;
-        radioObject.setChannel(0);
+        radioObject.setCurrentChannel(0);
         radioObject.previousChannel();
-        int actual = radioObject.getChannel();
+        int actual = radioObject.getCurrentChannel();
         assertEquals(expected, actual);
     }
 
@@ -94,9 +94,9 @@ public class RadioTest {
     void ChannelBackward() {
         Radio radioObject = new Radio(50);
         int expected = 45;
-        radioObject.setChannel(46);
+        radioObject.setCurrentChannel(46);
         radioObject.previousChannel();
-        int actual = radioObject.getChannel();
+        int actual = radioObject.getCurrentChannel();
         assertEquals(expected, actual);
     }
 
@@ -104,9 +104,9 @@ public class RadioTest {
     void ChannelForward() {
         Radio radioObject = new Radio(15);
         int expected = 14;
-        radioObject.setChannel(13);
+        radioObject.setCurrentChannel(13);
         radioObject.nextChannel();
-        int actual = radioObject.getChannel();
+        int actual = radioObject.getCurrentChannel();
         assertEquals(expected, actual);
     }
 }
